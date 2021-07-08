@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Yem
   - Ground
+  - cutter
+  - bridge
+  - FinishPad
   layers:
   - Default
   - TransparentFX

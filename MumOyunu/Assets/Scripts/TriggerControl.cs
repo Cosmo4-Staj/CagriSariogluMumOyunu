@@ -20,6 +20,7 @@ public class TriggerControl : MonoBehaviour
         if (collision.transform.tag.Equals("Ground")) //Mum yolun ustunde mi?
         {
             CandleScale.instance.OnGround = true;
+            MumHareket.instance.OnGround = true;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -27,6 +28,7 @@ public class TriggerControl : MonoBehaviour
         if (collision.transform.tag.Equals("Ground")) //Mum yolun ustunde mi?
         {
             CandleScale.instance.OnGround = false;
+            MumHareket.instance.OnGround = false;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -35,6 +37,22 @@ public class TriggerControl : MonoBehaviour
         {
             Destroy(other.gameObject); // yem'i yok et
             CandleScale.instance.GetPartOfMum(); //fonk. cagir
+        }
+        if (other.transform.tag.Equals("cutter")) //Mum kesiciye carpti mi?
+        {
+            CandleScale.instance.Cutter(); //fonk. cagir
+        }
+        if (other.transform.tag.Equals("FinishPad")) //Mum bitis noktasina geldi mi?
+        {
+            CandleScale.instance.FinishPad(); //fonk. cagir
+        }
+
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag.Equals("bridge")) //Mum koprude mi?
+        {
+            CandleScale.instance.bridge(); //fonk. cagir
         }
     }
 }
