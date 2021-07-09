@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerControl : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,13 @@ public class TriggerControl : MonoBehaviour
         
     }
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag.Equals("Ground")) //Mum yolun ustunde mi?
+        {
+            CandleScale.instance.OnGround = true;
+            MumHareket.instance.OnGround = true;
+        }
+    }private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag.Equals("Ground")) //Mum yolun ustunde mi?
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MumHareket : MonoBehaviour
 {
-    public GameObject GameOverScreen;
+    
     public static MumHareket instance;
     private Touch touch;
     private float speedModifier;
@@ -15,7 +15,6 @@ public class MumHareket : MonoBehaviour
         if (instance == null) 
             instance = this;
     }
-    
     void Start()
     {
         speedModifier = 0.01f;
@@ -25,15 +24,8 @@ public class MumHareket : MonoBehaviour
     }
     private void Update()
     {
-        if (OnGround)
-        {
             transform.Translate(Vector3.forward * (speed) * Time.deltaTime);// Ileri doğru hareket
-        }
-        else
-        {
-            //speed = 0;
-            Time.timeScale=0;
-        }
+ 
         if (Input.touchCount > 0) // Dokunma varsa;
         {
             touch = Input.GetTouch(0); // Degiskeni atama atama
@@ -49,5 +41,11 @@ public class MumHareket : MonoBehaviour
         }
         // Mumun yoldan disari cikmaması icin gereken kod (clamp islemi)
         transform.position = new Vector3(Mathf.Clamp(transform.position.x,minCandlePos,maxCandlePos),Mathf.Clamp(transform.position.y,0.01f,50),transform.position.z);
+        
+    
+    
+
+
+
     }
 }

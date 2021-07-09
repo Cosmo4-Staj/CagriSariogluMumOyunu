@@ -18,6 +18,5 @@ public class YouWinScreen : MonoBehaviour
     public void NextLevelButton()
     {
         SceneManager.LoadScene("Game");
-
     }
 }
