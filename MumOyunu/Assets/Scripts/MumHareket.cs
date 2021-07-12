@@ -20,11 +20,10 @@ public class MumHareket : MonoBehaviour
         speedModifier = 0.01f;
         minCandlePos = -4.5f;
         maxCandlePos = 4.5f;
-        this.transform.position = new Vector3(0,1.5f,0);
     }
     private void Update()
     {
-            transform.Translate(Vector3.forward * (speed) * Time.deltaTime);// Ileri doğru hareket
+            //transform.Translate(Vector3.forward * (speed) * Time.deltaTime);// Ileri doğru hareket
  
         if (Input.touchCount > 0) // Dokunma varsa;
         {
@@ -40,12 +39,6 @@ public class MumHareket : MonoBehaviour
             }
         }
         // Mumun yoldan disari cikmaması icin gereken kod (clamp islemi)
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x,minCandlePos,maxCandlePos),Mathf.Clamp(transform.position.y,0.01f,50),transform.position.z);
-        
-    
-    
-
-
-
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x,minCandlePos,maxCandlePos),Mathf.Clamp(transform.position.y,0f,50),transform.position.z);
     }
 }

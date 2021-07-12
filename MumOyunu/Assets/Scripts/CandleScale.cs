@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CandleScale : MonoBehaviour
 {
+    GameManager gameManager;
+    private Touch touch;
+    private float speedModifier;
     public GameObject Piece;
     public static CandleScale instance;
-    public GameObject YouWinScreen;
-    public GameObject GameOverScreen;
-    public GameObject StartScreen;
+    public float speed = 5;
     public bool OnGround = false;
     public float meltSpeed = 0.2f;
     public float bridgeMeltSpeed = 0.5f;
+    Vector3 PiecePos = new Vector3(0f, -0.3f, 0f);
+
+    
     private void Awake()
     {
         if (instance == null) 
@@ -19,29 +23,18 @@ public class CandleScale : MonoBehaviour
     }
     private void start()
     {
-        
+        speedModifier = 0.01f;
+
     }
     void Update()
     {
-        
-        if(OnGround) // Yol'un ustundeyse;
-        {
-            transform.localScale -= Vector3.up * Time.deltaTime * meltSpeed; // Kuculmeye devam et
-        }
-        else
-        {
-            bridgeMeltSpeed =0;
-            meltSpeed = 0;
-            
-           
-        }
+        transform.Translate(Vector3.forward * (speed) * Time.deltaTime);// Ileri doğru hareket
+
+        this.transform.localScale -= Vector3.up * Time.deltaTime * meltSpeed; // Kuculmeye devam et
 
         if(this.transform.localScale.y <= 0.0f)
         {
-            bridgeMeltSpeed = 0;
-            meltSpeed = 0;
-            MumHareket.instance.speed = 0;
-            GameOverScreen.SetActive(true);
+            GameManager.instance.OnLevelFailed();
         }
     }
     public void GetPartOfMum()
@@ -50,8 +43,9 @@ public class CandleScale : MonoBehaviour
     }
     public void Cutter()
     {
+        SpawnPiece();
+        //Instantiate(Piece,MumHareket.instance.transform.position - PiecePos,Quaternion.identity);
         this.transform.localScale -= Vector3.up * 0.3f;
-        GameObject Parca= Instantiate(Piece,MumHareket.instance.transform.position,Quaternion.identity);
     }
     public void bridge()
     {
@@ -59,9 +53,10 @@ public class CandleScale : MonoBehaviour
     }
     public void FinishPad()
     {
-        MumHareket.instance.speed=0;
-        bridgeMeltSpeed =0;
-        meltSpeed = 0;
-        YouWinScreen.SetActive(true);
+        GameManager.instance.OnLevelCompleted();
     }    
+    public void SpawnPiece()
+    {
+        Instantiate(Piece, MumHareket.instance.transform.position - PiecePos * 1f, Quaternion.identity);
+    }
 }
