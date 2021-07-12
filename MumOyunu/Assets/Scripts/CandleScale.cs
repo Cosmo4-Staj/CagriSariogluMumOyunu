@@ -28,10 +28,19 @@ public class CandleScale : MonoBehaviour
         {
             transform.localScale -= Vector3.up * Time.deltaTime * meltSpeed; // Kuculmeye devam et
         }
-        else{
+        else
+        {
             bridgeMeltSpeed =0;
             meltSpeed = 0;
-            MumHareket.instance.speed=0;
+            
+           
+        }
+
+        if(this.transform.localScale.y <= 0.0f)
+        {
+            bridgeMeltSpeed = 0;
+            meltSpeed = 0;
+            MumHareket.instance.speed = 0;
             GameOverScreen.SetActive(true);
         }
     }

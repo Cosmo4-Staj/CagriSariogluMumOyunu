@@ -23,7 +23,8 @@ public class TriggerControl : MonoBehaviour
             CandleScale.instance.OnGround = true;
             MumHareket.instance.OnGround = true;
         }
-    }private void OnCollisionStay(Collision collision)
+    }
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.tag.Equals("Ground")) //Mum yolun ustunde mi?
         {
@@ -48,6 +49,7 @@ public class TriggerControl : MonoBehaviour
         }
         if (other.transform.tag.Equals("cutter")) //Mum kesiciye carpti mi?
         {
+            other.transform.GetComponent<Collider>().enabled = false;
             CandleScale.instance.Cutter(); //fonk. cagir
         }
         if (other.transform.tag.Equals("FinishPad")) //Mum bitis noktasina geldi mi?
