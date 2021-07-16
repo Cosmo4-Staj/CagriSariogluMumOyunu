@@ -42,6 +42,7 @@ public class TriggerControl : MonoBehaviour
     {
         if (other.transform.tag.Equals("Yem")) //Mum yem'e carpti mi?
         {
+            FindObjectOfType<AudioManager>().PlaySound("PickUpPart");
             Destroy(other.gameObject); // yem'i yok et
             CandleScale.instance.GetPartOfMum(); //fonk. cagir
         }
@@ -60,7 +61,8 @@ public class TriggerControl : MonoBehaviour
     {
         if (other.transform.tag.Equals("bridge")) //Mum koprude mi?
         {
-            CandleScale.instance.bridge(); //fonk. cagir
+            if(CandleScale.instance.transform.localScale.y>=0.01f)
+                CandleScale.instance.bridge(); //fonk. cagir
         }
     }
 }

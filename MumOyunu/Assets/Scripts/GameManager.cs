@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         isGameStarted = false;
         isGameEnded = false;
         GetLevel();
-        //LevelText.text = "Level " + (LevelCount +1).ToString();
+        LevelText.text = "Level " + (LevelCount +1).ToString();
     }
     // Update is called once per frame
     void Update()
@@ -40,27 +40,21 @@ public class GameManager : MonoBehaviour
     }
     public void OnLevelStarted()
     {
-        //isGameStarted = true;
-        //startScreen.SetActive(false);
+        isGameStarted = true;
+        startScreen.SetActive(false);
     }
-    public void OnLevelEnded() // Game Over?
+    public void OnLevelEnded()
     {
         
     }
-    public void OnLevelCompleted() // Loads the next level
+    public void OnLevelCompleted() // Bitis ekranini cagirma
     {
-        CandleScale.instance.bridgeMeltSpeed=0;
-        CandleScale.instance.meltSpeed=0;
-        CandleScale.instance.speed = 0;
         finishScreen.SetActive(true);
         isGameEnded = true;
     }
 
-    public void OnLevelFailed() // Loads the current scene back on collision with an obstacle.
+    public void OnLevelFailed() // Game Over ekranini cagirma
     {
-        CandleScale.instance.bridgeMeltSpeed=0;
-        CandleScale.instance.meltSpeed=0;
-        CandleScale.instance.speed = 0;
         gameOverScreen.SetActive(true);
         isGameEnded = true;
     }

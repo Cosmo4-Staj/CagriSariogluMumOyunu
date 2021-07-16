@@ -25,15 +25,15 @@ public class CandleScale : MonoBehaviour
     }
     void Update()
     {
-        /*if (!GameManager.isGameStarted || GameManager.isGameEnded)
+        if (!GameManager.isGameStarted || GameManager.isGameEnded) // Oyun baslamadiysa veya bittiyse
         {
             return;
-        }*/
+        }
         transform.Translate(Vector3.forward * (speed) * Time.deltaTime);// Ileri doğru hareket
 
         this.transform.localScale -= Vector3.up * Time.deltaTime * meltSpeed; // Kuculmeye devam et
 
-        if(this.transform.localScale.y <= 0.0f)
+        if(this.transform.localScale.y <= 0.01f)
         {
             GameManager.instance.OnLevelFailed();
         }
@@ -44,9 +44,8 @@ public class CandleScale : MonoBehaviour
     }
     public void Cutter()
     {
-        SpawnPiece();
-        //Instantiate(Piece,MumHareket.instance.transform.position - PiecePos,Quaternion.identity);
-        this.transform.localScale -= Vector3.up * 0.3f;
+        SpawnPiece(); //Arkada parca birakma islemi
+        this.transform.localScale -= Vector3.up * 0.3f; // Kisalma islemi
     }
     public void bridge()
     {
